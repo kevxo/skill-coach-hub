@@ -1,3 +1,4 @@
+from typing import Optional
 from uuid import UUID
 from pydantic import BaseModel, EmailStr
 from app.models.user import UserRole
@@ -9,6 +10,10 @@ class UserCreate(BaseModel):
     role: UserRole
     password: str
 
+class UserUpdate(BaseModel):
+    first_name: str | None = None
+    last_name: str | None = None
+
 class UserLogin(BaseModel):
     email: EmailStr
     password: str
@@ -19,6 +24,7 @@ class UserResponse(BaseModel):
     role: UserRole
     first_name: str
     last_name: str
+    avatar_url: Optional[str]
 
     class Config:
         from_attributes = True
