@@ -4,6 +4,7 @@ from app.schemas.user import UserResponse, UserUpdate
 from app.core.security import get_current_user
 from sqlalchemy.orm import Session
 from app.db.deps import get_db
+from app.db.helpers.user import update_user_profile
 
 router = APIRouter(prefix="/users", tags=["users"])
 
