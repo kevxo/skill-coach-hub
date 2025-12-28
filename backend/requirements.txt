@@ -6,3 +6,7 @@ alembic
 pydantic-settings
 python-dotenv
 python-jose[cryptography]
+boto3
+pydantic[email]
+passlib
+bcrypt==4.3.0
