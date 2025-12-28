@@ -11,12 +11,16 @@ class UserCreate(BaseModel):
     password: str
 
 class UserUpdate(BaseModel):
-    first_name: str | None = None
-    last_name: str | None = None
+    first_name: Optional[str | None ] = None
+    last_name: Optional[str | None ] = None
 
 class UserLogin(BaseModel):
     email: EmailStr
     password: str
+
+class AvatarUploadResponse(BaseModel):
+    upload_url: str
+    avatar_url: str
 
 class UserResponse(BaseModel):
     id: UUID
