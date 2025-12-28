@@ -20,3 +20,4 @@ class User(Base):
     role = Column[UserRole](Enum(UserRole, name="userrole"), nullable=False)
     first_name = Column[str](String, nullable=False)
     last_name = Column[str](String, nullable=False)
+    avatar_url = Column[str](String, nullable=True)

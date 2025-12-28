@@ -6,6 +6,8 @@ class Settings(BaseSettings):
     SECRET_KEY: str
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60
     ALGORITHM: str = "HS256"
+    AWS_S3_BUCKET: str
+    AWS_REGION: str = "us-east-2"
 
     class Config:
         env_file = ".env"
