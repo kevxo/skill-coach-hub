@@ -1,10 +1,10 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Query
 from app.models.user import User
-from app.schemas.user import UserResponse, UserUpdate
+from app.schemas.user import AvatarUploadResponse, UserResponse, UserUpdate
 from app.core.security import get_current_user
 from sqlalchemy.orm import Session
 from app.db.deps import get_db
-from app.db.helpers.user import update_user_profile
+from app.db.helpers.user import update_user_profile, update_user_avatar
 
 router = APIRouter(prefix="/users", tags=["users"])
 
@@ -19,3 +19,11 @@ def update_user(
     current_user: User = Depends(get_current_user)
 ):
     return update_user_profile(db, payload, current_user)
+
+@router.patch("/me/avatar", response_model=AvatarUploadResponse)
+def update_my_avatar(
+    content_type: str = Query(..., description="Image MIME type"),
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    return update_user_avatar(content_type, db, current_user)
