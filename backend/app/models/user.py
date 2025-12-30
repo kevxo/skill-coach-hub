@@ -3,6 +3,7 @@ from typing import Any
 
 import uuid
 from sqlalchemy import Column, String, Enum
+from sqlalchemy.orm import relationship
 from app.db.base import Base
 from sqlalchemy.dialects.postgresql import UUID
 import enum
@@ -21,3 +22,9 @@ class User(Base):
     first_name = Column[str](String, nullable=False)
     last_name = Column[str](String, nullable=False)
     avatar_url = Column[str](String, nullable=True)
+
+    availability = relationship(
+        "CoachAvailability",
+        back_populates="coach",
+        cascade="all, delete-orphan"
+    )
