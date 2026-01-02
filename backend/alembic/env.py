@@ -1,6 +1,7 @@
 from logging.config import fileConfig
 from app.core.config import settings
 from app.db.base import Base
+from app.models import user, coach_availability
 
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
