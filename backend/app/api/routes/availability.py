@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from app.db.session import get_db
+from app.db.deps import get_db
 
 from app.schemas.coach_availability import AvailabilityCreate, AvailabilityResponse
 from app.core.security import get_current_user
@@ -25,7 +25,7 @@ def get_all_my_availabilities(
     db: Session = Depends(get_db), 
     current_user: User = Depends(get_current_user)
 ):
-    return all_my_availabilities(db, current_user)
+    return all_my_availabilities(current_user, db)
 
 @router.delete("/{availability_id}", status_code=204)
 def delete_availability(
